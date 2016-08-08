@@ -58,3 +58,5 @@ _testmain.go
 *.test
 *.prof
 
+### project ###
+scraping-targets
