@@ -1,6 +1,7 @@
 package handlers
 
 import (
+  "encoding/json"
   "fmt"
   "html/template"
   "math/rand"
@@ -10,6 +11,14 @@ import (
 type PageOpts struct {
   Page string
   OnSale bool
+}
+
+type Product struct {
+  Id int `json:"id"`
+  Name string `json:"name"`
+  Description string `json:"description"`
+  Price int `json:"price"`
+  Weight int `json:"weight"`
 }
 
 func Index(w http.ResponseWriter, r *http.Request) {
@@ -38,6 +47,13 @@ func Products(w http.ResponseWriter, r *http.Request) {
   processLayout(w, r, opts)
 }
 
+func ProductData(w http.ResponseWriter, r *http.Request) {
+  fmt.Printf("Product Data: %s\n", r.URL.String())
+  product := Product{Id:1, Name:"asdf", Description:"cool thing", Price:1000, Weight:10}
+  output, _ := json.MarshalIndent(&product, "", "\t")
+  w.Header().Set("Content-Type", "application/json")
+  w.Write(output)
+}
 
 func Error(w http.ResponseWriter, r *http.Request, status int) {
   fmt.Printf("Error: %s\t%d\n", r.URL.String(), status)

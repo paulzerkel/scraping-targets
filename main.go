@@ -17,6 +17,7 @@ func main() {
 
   mux.HandleFunc("/about", handlers.About)
   mux.HandleFunc("/products", handlers.Products)
+  mux.HandleFunc("/product-data", handlers.ProductData)
   mux.HandleFunc("/", handlers.Index)
 
   server := http.Server {
