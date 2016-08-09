@@ -1,5 +1,25 @@
 {{ define "content" }}
+<div class="page-header">
+  <h2>About Acme Corp</h2>
+</div>
+<div class="well">
+  Acme Corporation was founded in 2016 in order to supply the market with sustainable green-tech widgets. The company was developed with a synergistic approach to client services and best-of-class manufacturing capabilities. Not satisfied to be a market leader, Acme Corporation quickly released world dominating products. Thanks for stopping by!
+</div>
 <div class="row">
-  <h2>About</h2>
+  <div class="col-md-6">
+    <h3>Contact Us</h3>
+    <div itemscope itemtype="http://schema.org/LocalBusiness">
+      <address itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+        <strong itemprop="name">Acme Corp.</strong><br>
+        <span itemprop="streetAddress">911 Washington Ave, Suite 555</span><br>
+        <span itemprop="addressLocality">St. Louis</span>, <span itemprop="addressRegion">MO</span> <span itemprop="postalCode">63103</span><br>
+        <abbr title="Phone">P:</abbr> <span itemprop="telephone">(555) 123-1234</span>
+      </address>
+    </div>
+  </div>
+  <div class="col-md-6 location">
+    <h3>Location</h3>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3116.7592069072743!2d-90.19518018463457!3d38.63142017961249!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x87d8b31899196049%3A0x1a62f34833ba3ff0!2s911+Washington+Ave%2C+St.+Louis%2C+MO+63101!5e0!3m2!1sen!2sus!4v1470715239326" width="100%" height="100%" frameborder="0" style="border:0" allowfullscreen></iframe>
+  </div>
 </div>
 {{ end }}
