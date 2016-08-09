@@ -1,5 +1,40 @@
 {{ define "content" }}
+<div class="jumbotron">
+  <h1>Welcome to Acme Corp!</h1>
+  <p>Acme Corp builds the best widgets for home and business use.</p>
+</div>
+
 <div class="row">
-  <h2>index!</h2>
+  <div class="col-md-6">
+    {{ if .OnSale }}
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title">HUGE SALE!</h3>
+      </div>
+      <div class="panel-body">
+        Hey lucky winner! Are you ready to save money? Check out our amazing <a href="/products">products</a> and get ready to buy. Your coupon is: <strong>super-savings</strong>.
+      </div>
+    </div>
+    {{else}}
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Best Products!</h3>
+      </div>
+      <div class="panel-body">
+        Take offline circle back noodling adaptive. New media she's a rockstar flavor of the month value added jockey for position let's not boil the ocean. Run it up the flagpole laser focus eyeballs preschedule it's a game changer.
+      </div>
+    </div>
+    {{ end }}
+  </div>
+  <div class="col-md-6">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Lowest Prices!</h3>
+      </div>
+      <div class="panel-body">
+        Client-centric disruption pre-revenue business critical. Agile drinking the kool aid KISS level the playing field circle back we're on the same page. Next steps roadmap boil the ocean, he's a rockstar scuttlebutt we need to pivot.
+      </div>
+    </div>
+  </div>
 </div>
 {{ end }}

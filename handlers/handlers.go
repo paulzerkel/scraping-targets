@@ -3,6 +3,7 @@ package handlers
 import (
   "fmt"
   "html/template"
+  "math/rand"
   "net/http"
 )
 
@@ -18,7 +19,10 @@ func Index(w http.ResponseWriter, r *http.Request) {
     return
   }
 
-  opts := PageOpts{ Page: "index", OnSale: true }
+  opts := PageOpts{ Page: "index" }
+  if rand.Intn(5) == 0 {
+    opts.OnSale = true
+  }
   processLayout(w, r, opts)
 }
 
