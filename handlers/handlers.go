@@ -8,6 +8,7 @@ import (
 
 type PageOpts struct {
   Page string
+  OnSale bool
 }
 
 func Index(w http.ResponseWriter, r *http.Request) {
@@ -17,17 +18,20 @@ func Index(w http.ResponseWriter, r *http.Request) {
     return
   }
 
-  processLayout(w, r, PageOpts{"index"})
+  opts := PageOpts{ Page: "index", OnSale: true }
+  processLayout(w, r, opts)
 }
 
 func About(w http.ResponseWriter, r *http.Request) {
   fmt.Printf("Products: %s\n", r.URL.String())
-  processLayout(w, r, PageOpts{"about"})
+  opts := PageOpts{ Page: "about" }
+  processLayout(w, r, opts)
 }
 
 func Products(w http.ResponseWriter, r *http.Request) {
   fmt.Printf("Products: %s\n", r.URL.String())
-  processLayout(w, r, PageOpts{"products"})
+  opts := PageOpts{ Page: "products" }
+  processLayout(w, r, opts)
 }
 
 
@@ -35,7 +39,8 @@ func Error(w http.ResponseWriter, r *http.Request, status int) {
   fmt.Printf("Error: %s\t%d\n", r.URL.String(), status)
   w.WriteHeader(status)
 
-  processLayout(w, r, PageOpts{"error"})
+  opts := PageOpts{ Page: "error" }
+  processLayout(w, r, opts)
 }
 
 func processLayout(w http.ResponseWriter, r *http.Request, pageOpts PageOpts) {
