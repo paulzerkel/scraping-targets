@@ -6,6 +6,7 @@ import (
   "html/template"
   "math/rand"
   "net/http"
+  "time"
 )
 
 type PageOpts struct {
@@ -22,7 +23,7 @@ type Product struct {
 }
 
 func Index(w http.ResponseWriter, r *http.Request) {
-  fmt.Printf("Index: %s\n", r.URL.String())
+  fmt.Printf("%s\t%s\n", time.Now().String(), r.URL.String())
   if r.URL.Path != "/" {
     Error(w, r, http.StatusNotFound)
     return
@@ -36,19 +37,19 @@ func Index(w http.ResponseWriter, r *http.Request) {
 }
 
 func About(w http.ResponseWriter, r *http.Request) {
-  fmt.Printf("Products: %s\n", r.URL.String())
+  fmt.Printf("%s\t%s\n", time.Now().String(), r.URL.String())
   opts := PageOpts{ Page: "about" }
   processLayout(w, r, opts)
 }
 
 func Products(w http.ResponseWriter, r *http.Request) {
-  fmt.Printf("Products: %s\n", r.URL.String())
+  fmt.Printf("%s\t%s\n", time.Now().String(), r.URL.String())
   opts := PageOpts{ Page: "products" }
   processLayout(w, r, opts)
 }
 
 func ProductData(w http.ResponseWriter, r *http.Request) {
-  fmt.Printf("Product Data: %s\n", r.URL.String())
+  fmt.Printf("%s\t%s\n", time.Now().String(), r.URL.String())
   product := Product{Id:1, Name:"asdf", Description:"cool thing", Price:1000, Weight:10}
   output, _ := json.MarshalIndent(&product, "", "\t")
   w.Header().Set("Content-Type", "application/json")
@@ -56,7 +57,7 @@ func ProductData(w http.ResponseWriter, r *http.Request) {
 }
 
 func Error(w http.ResponseWriter, r *http.Request, status int) {
-  fmt.Printf("Error: %s\t%d\n", r.URL.String(), status)
+  fmt.Printf("%s\tERROR\t%s\n", time.Now().String(), r.URL.String())
   w.WriteHeader(status)
 
   opts := PageOpts{ Page: "error" }
