@@ -1,5 +1,14 @@
 'use strict';
 
+function formatCurrency(value) {
+  let tempValue = parseInt(value) / 100;
+  return "$" + tempValue.toFixed(2);
+}
+
+function formatWeight(value) {
+  return value + " lbs";
+}
+
 function Product(data) {
   this.id = ko.observable(data.id);
   this.name = ko.observable(data.name);
@@ -19,6 +28,5 @@ function ProductViewModel() {
 }
 
 $(function() {
-  //alert("help!");
   ko.applyBindings(new ProductViewModel());
 });

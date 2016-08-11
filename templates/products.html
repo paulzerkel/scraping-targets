@@ -11,8 +11,8 @@
       <tr>
         <td data-bind="text: name"></td>
         <td data-bind="text: description"></td>
-        <td data-bind="text: price"></td>
-        <td data-bind="text: weight"></td>
+        <td data-bind="text: formatCurrency(price())"></td>
+        <td data-bind="text: formatWeight(weight())"></td>
       </tr>
     </tbody>
   </table>
