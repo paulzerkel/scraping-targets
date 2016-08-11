@@ -23,7 +23,7 @@ type Product struct {
 }
 
 func Index(w http.ResponseWriter, r *http.Request) {
-  fmt.Printf("%s\t%s\n", time.Now().String(), r.URL.String())
+  log(r, "")
   if r.URL.Path != "/" {
     Error(w, r, http.StatusNotFound)
     return
@@ -37,19 +37,19 @@ func Index(w http.ResponseWriter, r *http.Request) {
 }
 
 func About(w http.ResponseWriter, r *http.Request) {
-  fmt.Printf("%s\t%s\n", time.Now().String(), r.URL.String())
+  log(r, "")
   opts := PageOpts{ Page: "about" }
   processLayout(w, r, opts)
 }
 
 func Products(w http.ResponseWriter, r *http.Request) {
-  fmt.Printf("%s\t%s\n", time.Now().String(), r.URL.String())
+  log(r, "")
   opts := PageOpts{ Page: "products" }
   processLayout(w, r, opts)
 }
 
 func ProductData(w http.ResponseWriter, r *http.Request) {
-  fmt.Printf("%s\t%s\n", time.Now().String(), r.URL.String())
+  log(r, "")
   products := []Product{
     Product{Id:1, Name:"QualityTurbo", Description:"When a generic turbo won't do, go for the QualityTurbo!", Price:23000, Weight:20},
     Product{Id:2, Name:"StarDynamic", Description: "This is the best telescope that money can buy. Find new stars even in the midst of light pollution", Price: 7700, Weight: 33},
@@ -65,11 +65,19 @@ func ProductData(w http.ResponseWriter, r *http.Request) {
 }
 
 func Error(w http.ResponseWriter, r *http.Request, status int) {
-  fmt.Printf("%s\tERROR\t%s\n", time.Now().String(), r.URL.String())
+  log(r, "ERROR")
   w.WriteHeader(status)
 
   opts := PageOpts{ Page: "error" }
   processLayout(w, r, opts)
+}
+
+func log(r *http.Request, note string) {
+  if len(note) > 0{
+    fmt.Printf("%s\t%s\t%s\n", time.Now().String(), note, r.URL.String())
+  } else {
+    fmt.Printf("%s\t%s\n", time.Now().String(), r.URL.String())
+  }
 }
 
 func processLayout(w http.ResponseWriter, r *http.Request, pageOpts PageOpts) {
