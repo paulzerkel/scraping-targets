@@ -50,9 +50,17 @@ func Products(w http.ResponseWriter, r *http.Request) {
 
 func ProductData(w http.ResponseWriter, r *http.Request) {
   fmt.Printf("%s\t%s\n", time.Now().String(), r.URL.String())
-  product := Product{Id:1, Name:"asdf", Description:"cool thing", Price:1000, Weight:10}
-  output, _ := json.MarshalIndent(&product, "", "\t")
+  products := []Product{
+    Product{Id:1, Name:"QualityTurbo", Description:"When a generic turbo won't do, go for the QualityTurbo!", Price:1000, Weight:10},
+    Product{Id:2, Name:"StarDynamic", Description: "This is the best telescope that money can buy. Find new stars even in the midst of light pollution", Price: 1000, Weight: 10},
+    Product{Id:3, Name:"Magictronics", Description: "Magic + Electronics = Magictronics. Enough said.", Price:1000, Weight:10},
+    Product{Id:4, Name:"CentreWork", Description: "Find the absolute center of any object. Perfect for the modern machine shop.", Price: 1000, Weight: 10},
+    Product{Id:5, Name:"WorldLogix", Description: "World shipping logistics: solved. Save a bundle on transporting your goods anywhere in the world", Price: 1000, Weight: 10},
+  }
+  output, _ := json.MarshalIndent(&products, "", "\t")
   w.Header().Set("Content-Type", "application/json")
+
+  time.Sleep(3 * time.Second)
   w.Write(output)
 }
 

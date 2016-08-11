@@ -1,9 +1,25 @@
 {{ define "content" }}
 <div class="row">
   <h2>Products!</h2>
+  <p>Check out some of these great products from Acme, Corp.</p>
+  <div data-bind="visible: products().length == 0">
+    <img src="/static/images/ajax-loader.gif">
+  </div>
+
+  <table class="products table table-striped">
+    <tbody data-bind="foreach: products">
+      <tr>
+        <td data-bind="text: name"></td>
+        <td data-bind="text: description"></td>
+        <td data-bind="text: price"></td>
+        <td data-bind="text: weight"></td>
+      </tr>
+    </tbody>
+  </table>
 </div>
 {{ end }}
 
 {{ define "js" }}
+<script src="/static/js/knockout-3.4.0.js"></script>
 <script src="/static/js/products.js"></script>
 {{ end }}
